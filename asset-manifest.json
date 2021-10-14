@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/awon20/canvas_drawing.git/static/css/main.fe01bd39.chunk.css",
+    "main.js": "/awon20/canvas_drawing.git/static/js/main.a095efa9.chunk.js",
+    "main.js.map": "/awon20/canvas_drawing.git/static/js/main.a095efa9.chunk.js.map",
+    "runtime-main.js": "/awon20/canvas_drawing.git/static/js/runtime-main.56d54c33.js",
+    "runtime-main.js.map": "/awon20/canvas_drawing.git/static/js/runtime-main.56d54c33.js.map",
+    "static/css/2.76bbe915.chunk.css": "/awon20/canvas_drawing.git/static/css/2.76bbe915.chunk.css",
+    "static/js/2.a23601f1.chunk.js": "/awon20/canvas_drawing.git/static/js/2.a23601f1.chunk.js",
+    "static/js/2.a23601f1.chunk.js.map": "/awon20/canvas_drawing.git/static/js/2.a23601f1.chunk.js.map",
+    "index.html": "/awon20/canvas_drawing.git/index.html",
+    "static/css/2.76bbe915.chunk.css.map": "/awon20/canvas_drawing.git/static/css/2.76bbe915.chunk.css.map",
+    "static/css/main.fe01bd39.chunk.css.map": "/awon20/canvas_drawing.git/static/css/main.fe01bd39.chunk.css.map",
+    "static/js/2.a23601f1.chunk.js.LICENSE.txt": "/awon20/canvas_drawing.git/static/js/2.a23601f1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.56d54c33.js",
+    "static/css/2.76bbe915.chunk.css",
+    "static/js/2.a23601f1.chunk.js",
+    "static/css/main.fe01bd39.chunk.css",
+    "static/js/main.a095efa9.chunk.js"
+  ]
+}
