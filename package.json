@@ -1,7 +1,7 @@
 {
   "name": "canvas_drawing",
   "version": "0.1.0",
- "homepage": "https://github.com/awon20/canvas_drawing.git",
+  "homepage": "https://github.com/awon20/canvas_drawing.git",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.4.1",
