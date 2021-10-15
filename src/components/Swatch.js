@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import Paper from '@mui/material/Paper';
+
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
 import { styles } from "../theme/Styles";
 import {
   Line,
-  Resize,
+  // Resize,
   Triangle,
   Rectangle,
   Circle,
@@ -17,6 +22,15 @@ import {
 import ColourPicker from "./ColourPicker";
 import { download } from "./Download";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
 export default function Swatch({
   toolType,
   setToolType,
@@ -29,6 +43,13 @@ export default function Swatch({
   setShapeWidth,
 }) {
   const [displayStroke, setDisplayStroke] = useState(false);
+  const classes = useStyles();
+  const [view, setView] = React.useState('list');
+
+  const handleChange = (event, nextView) => {
+    setView(nextView);
+  };
+
 
   const handleClickStroke = () => {
     setDisplayStroke(!displayStroke);
@@ -59,8 +80,15 @@ export default function Swatch({
   };
   return (
     <div>
-      <div className="row">
-        <div
+      <div className={classes.root}>
+      <ToggleButtonGroup
+        orientation="vertical"
+        value={view}
+        exclusive
+        onChange={handleChange}
+      >
+      {/* <div className="row"> */}
+        {/* <div
           className="col-md-1 icon-bar"
           style={{
             position: "absolute",
@@ -73,8 +101,8 @@ export default function Swatch({
             }px`,
             borderRadius: "10px",
           }}
-        >
-          <button
+        > */}
+          {/* <button
             id="selection"
             data-toggle="tooltip"
             data-placement="top"
@@ -85,9 +113,10 @@ export default function Swatch({
               setShapeWidth(1);
             }}
           >
-            <Resize toolType={toolType} colorWidth={colorWidth} />
-          </button>
-          <button
+          <Resize toolType={toolType} colorWidth={colorWidth} />
+          </button> */}
+          <Paper square elevation={3}>
+          <ToggleButton value="list" aria-label="line"
             id="line"
             data-toggle="tooltip"
             data-placement="top"
@@ -100,9 +129,9 @@ export default function Swatch({
             }}
           >
             <Line toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
 
-          <button
+          <ToggleButton value="list" aria-label="rectangle"
             id="rectangle"
             data-toggle="tooltip"
             data-placement="top"
@@ -115,9 +144,9 @@ export default function Swatch({
             }}
           >
             <Rectangle toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
 
-          <button
+          <ToggleButton value="list" aria-label="circle"
             id="circle"
             data-toggle="tooltip"
             data-placement="top"
@@ -130,9 +159,9 @@ export default function Swatch({
             }}
           >
             <Circle toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
 
-          <button
+          <ToggleButton  value="list" aria-label="triangle"
             id="triangle"
             data-toggle="tooltip"
             data-placement="top"
@@ -145,9 +174,9 @@ export default function Swatch({
             }}
           >
             <Triangle toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
 
-          <button
+          <ToggleButton  value="list" aria-label="pencil"
             id="pencil"
             data-toggle="tooltip"
             data-placement="top"
@@ -160,9 +189,9 @@ export default function Swatch({
             }}
           >
             <Pencil toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
 
-          <button
+          <ToggleButton value="list" aria-label="brush"
             id="brush"
             data-toggle="tooltip"
             data-placement="top"
@@ -175,9 +204,9 @@ export default function Swatch({
             }}
           >
             <Brush toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
 
-          <button
+          <ToggleButton value="list" aria-label="Eraser"
             id="eraser"
             data-toggle="tooltip"
             data-placement="top"
@@ -190,9 +219,11 @@ export default function Swatch({
             }}
           >
             <Eraser toolType={toolType} colorWidth={colorWidth} />
-          </button>
+          </ToggleButton>
+          </Paper>
+          </ToggleButtonGroup>
         </div>
-
+        {/* hier fängt die HorizontalButtonbalken */}
         <div className="col-md-11">
           <div
             className="row icon-vbar"
@@ -270,7 +301,6 @@ export default function Swatch({
             )}
           </div>
         </div>
-      </div>
-    </div>
+        </div>
   );
 }
