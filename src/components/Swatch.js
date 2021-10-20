@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Paper from '@mui/material/Paper';
-
+import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,11 +45,18 @@ export default function Swatch({
   const [displayStroke, setDisplayStroke] = useState(false);
   const classes = useStyles();
   const [view, setView] = React.useState('list');
+  const [alignment, setAlignment] = React.useState('bottom');
+
 
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
 
+  const handleAlignment = (event, newAlignment) => {
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
+  };
 
   const handleClickStroke = () => {
     setDisplayStroke(!displayStroke);
@@ -79,14 +86,15 @@ export default function Swatch({
     }
   };
   return (
-    <div>
+    <Grid container spacing={2}>
+      <Grid item sm={12} md={6}>
       <div className={classes.root}>
-      <ToggleButtonGroup
-        orientation="vertical"
-        value={view}
-        exclusive
-        onChange={handleChange}
-      >
+        <ToggleButtonGroup
+          orientation="vertical"
+          value={alignment}
+          exclusive
+          onChange={e => { handleAlignment(e); handleChange(e) }}
+        >   
       {/* <div className="row"> */}
         {/* <div
           className="col-md-1 icon-bar"
@@ -116,7 +124,7 @@ export default function Swatch({
           <Resize toolType={toolType} colorWidth={colorWidth} />
           </button> */}
           <Paper square elevation={3}>
-          <ToggleButton value="list" aria-label="line"
+          {/* <ToggleButton value="list" aria-label="line"
             id="line"
             data-toggle="tooltip"
             data-placement="top"
@@ -174,7 +182,7 @@ export default function Swatch({
             }}
           >
             <Triangle toolType={toolType} colorWidth={colorWidth} />
-          </ToggleButton>
+          </ToggleButton> */}
 
           <ToggleButton  value="list" aria-label="pencil"
             id="pencil"
@@ -220,29 +228,7 @@ export default function Swatch({
           >
             <Eraser toolType={toolType} colorWidth={colorWidth} />
           </ToggleButton>
-          </Paper>
-          </ToggleButtonGroup>
-        </div>
-        {/* hier fängt die HorizontalButtonbalken */}
-        <div className="col-md-11">
-          <div
-            className="row icon-vbar"
-            style={{
-              position: "absolute",
-              backgroundColor: "#f0f0f0",
-              width:
-                window.innerWidth <= 1024
-                  ? `${window.innerWidth * 0.073 * 5.6}px`
-                  : `${window.innerWidth * 0.073 * 4.79}px`,
-              height: `${window.innerHeight * 0.1}px`,
-              right: `${
-                (window.innerWidth - window.innerWidth * 0.073 * 4.8) / 20
-              }px`,
-              top: "0px",
-              borderRadius: "10px",
-            }}
-          >
-            <button
+          <ToggleButton
               style={styles.topicons}
               data-toggle="tooltip"
               data-placement="top"
@@ -254,24 +240,22 @@ export default function Swatch({
               }}
             >
               <Reset />
-            </button>
-            <button
+            </ToggleButton>
+            {/* <ToggleButton
               style={styles.topicons}
               data-toggle="tooltip"
               data-placement="top"
               title="Download"
             >
-              <button onClick={download}>
+              <ToggleButton onClick={download}>
                 <Download />
-              </button>
-            </button>
-            <div>
-              <button
+              </ToggleButton>
+            </ToggleButton> */}
+              <ToggleButton
                 style={styles.picker}
                 onClick={handleClickStroke}
-              ></button>
-            </div>
-            <button
+              ></ToggleButton>
+            <ToggleButton
               style={styles.topicons}
               onClick={increaseWidth}
               data-toggle="tooltip"
@@ -279,8 +263,8 @@ export default function Swatch({
               title="Increase Width"
             >
               <Plus />
-            </button>
-            <button
+            </ToggleButton>
+            <ToggleButton
               style={styles.topicons}
               onClick={decreaseWidth}
               data-toggle="tooltip"
@@ -288,8 +272,7 @@ export default function Swatch({
               title="Decrease Width"
             >
               <Minus />
-            </button>
-          </div>
+            </ToggleButton>
           <div
             className="row"
             style={{ position: "absolute", right: "0px", top: "0px" }}
@@ -300,7 +283,11 @@ export default function Swatch({
               </div>
             )}
           </div>
+          </Paper>
+          </ToggleButtonGroup>
         </div>
-        </div>
+        {/* hier fängt die HorizontalButtonbalken */}
+        </Grid>
+        </Grid>
   );
 }
