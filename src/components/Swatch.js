@@ -6,21 +6,21 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from "../theme/Styles";
 import {
-  Line,
-  // Resize,
-  Triangle,
-  Rectangle,
-  Circle,
+  // Line,
+  // // Resize,
+  // Triangle,
+  // Rectangle,
+  // Circle,
   Brush,
   Pencil,
   Plus,
   Minus,
   Eraser,
   Reset,
-  Download,
+  // Download,
 } from "../theme/Svg";
 import ColourPicker from "./ColourPicker";
-import { download } from "./Download";
+// import { download } from "./Download";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,13 +44,13 @@ export default function Swatch({
 }) {
   const [displayStroke, setDisplayStroke] = useState(false);
   const classes = useStyles();
-  const [view, setView] = React.useState('list');
+  // const [view, setView] = React.useState('list');
   const [alignment, setAlignment] = React.useState('bottom');
 
 
-  const handleChange = (event, nextView) => {
-    setView(nextView);
-  };
+  // const handleChange = (event, nextView) => {
+  //   setView(nextView);
+  // };
 
   const handleAlignment = (event, newAlignment) => {
     if (newAlignment !== null) {
@@ -93,7 +93,7 @@ export default function Swatch({
           orientation="vertical"
           value={alignment}
           exclusive
-          onChange={e => { handleAlignment(e); handleChange(e) }}
+          onChange={e => { handleAlignment(e)}}
         >   
       {/* <div className="row"> */}
         {/* <div
