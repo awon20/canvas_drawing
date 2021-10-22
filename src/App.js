@@ -81,7 +81,7 @@ function App() {
     return () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
     };
-  }, [popped, elements, path, shapeWidth, toolType]);
+  }, [popped, elements, path, width]);
 
   const updateElement = (
     index,
