@@ -30,6 +30,10 @@ export const styles = reactCSS({
       outline: "none",
       filter: "blur(0.5px)",
       padding: "0.5%",
+      textAlign: "center",
+      alignItems: "center",
+      justifyContent: "center",
+
       marginTop:
         window.innerWidth <= 1024 //320
           ? `${window.innerHeight - window.innerHeight * 0.981}px`

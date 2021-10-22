@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import clsx from 'clsx';
 import Paper from '@mui/material/Paper';
-import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { makeStyles } from '@material-ui/core/styles';
+import CreateSharpIcon from '@material-ui/icons/CreateSharp';
+import CheckIcon from '@material-ui/icons/Check';
+import grey from "@material-ui/core/colors/grey";
+
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { styles } from "../theme/Styles";
 import {
   // Line,
@@ -12,7 +17,7 @@ import {
   // Rectangle,
   // Circle,
   Brush,
-  Pencil,
+  // Pencil,
   Plus,
   Minus,
   Eraser,
@@ -29,7 +34,31 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  paper: {
+    display: 'flex',
+    border: `1px solid ${theme.palette.divider}`,
+    flexWrap: 'wrap',
+    BackgroundColor: grey[300]
+  },
+  divider: {
+    margin: theme.spacing(1, 0.5),
+  },
 }));
+
+const StyledToggleButtonGroup = withStyles((theme) => ({
+  grouped: {
+    margin: theme.spacing(0.5),
+    border: 'none',
+    '&:not(:first-child)': {
+      borderRadius: theme.shape.borderRadius,
+    },
+    '&:first-child': {
+      borderRadius: theme.shape.borderRadius,
+    },
+    display: "block",
+    textAlign: "center",
+  },
+}))(ToggleButtonGroup);
 
 export default function Swatch({
   toolType,
@@ -42,26 +71,23 @@ export default function Swatch({
   colorWidth,
   setShapeWidth,
 }) {
-  const [displayStroke, setDisplayStroke] = useState(false);
   const classes = useStyles();
-  // const [view, setView] = React.useState('list');
-  const [alignment, setAlignment] = React.useState('bottom');
-
-
-  // const handleChange = (event, nextView) => {
-  //   setView(nextView);
-  // };
-
-  const handleAlignment = (event, newAlignment) => {
-    if (newAlignment !== null) {
-      setAlignment(newAlignment);
-    }
-  };
+  const [displayStroke, setDisplayStroke] = useState(false);
+  const [selected, setSelected] = React.useState(false);
+  // const [alignment, setAlignment] = React.useState('left');
 
   const handleClickStroke = () => {
     setDisplayStroke(!displayStroke);
     setColorWidth(colorWidth);
   };
+
+  // const handleAlignment = (event, newAlignment) => {
+  //   if (newAlignment !== null) {
+  //     setAlignment(newAlignment);
+  //   }
+  // };
+
+
 
   const increaseWidth = () => {
     if (toolType === "brush" || toolType === "eraser") {
@@ -70,9 +96,9 @@ export default function Swatch({
     if (toolType === "pencil") {
       if (width < 15) setWidth((prev) => prev + 3);
     }
-    if (toolType === ("triangle" || "rectangle" || "circle")) {
-      if (width < 15) setShapeWidth((prev) => prev + 3);
-    }
+    // if (toolType === ("triangle" || "rectangle" || "circle")) {
+    //   if (width < 15) setShapeWidth((prev) => prev + 3);
+    // }
   };
   const decreaseWidth = () => {
     if (toolType === "brush" || toolType === "eraser") {
@@ -81,124 +107,63 @@ export default function Swatch({
     if (toolType === "pencil") {
       if (width > 1) setWidth((prev) => prev - 3);
     }
-    if (toolType === ("triangle" || "rectangle" || "circle")) {
-      if (width > 1) setShapeWidth((prev) => prev - 3);
-    }
+    // if (toolType === ("triangle" || "rectangle" || "circle")) {
+    //   if (width > 1) setShapeWidth((prev) => prev - 3);
+    // }
   };
   return (
-    <Grid container spacing={2}>
-      <Grid item sm={12} md={6}>
-      <div className={classes.root}>
-        <ToggleButtonGroup
+    // <Grid container spacing={2}>
+    //   <Grid item sm={12} md={6}>
+    <div>
+      <div className={clsx(classes.root)}>
+        {/* <ToggleButtonGroup
           orientation="vertical"
           value={alignment}
           exclusive
           onChange={e => { handleAlignment(e)}}
-        >   
-      {/* <div className="row"> */}
-        {/* <div
-          className="col-md-1 icon-bar"
-          style={{
-            position: "absolute",
-            backgroundColor: "#f0f0f0",
-            height: `${window.innerHeight * 0.09 * 8}px`,
-            width: `${window.innerWidth * 0.073 * 1.8}px`,
-            left: "2px",
-            top: `${
-              (window.innerHeight - window.innerHeight * 0.09 * 8) / 2
-            }px`,
-            borderRadius: "10px",
-          }}
-        > */}
-          {/* <button
-            id="selection"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Selection"
+        >  */}
+         <Paper elevation={0} className={clsx(classes.paper, classes.greyPaper)} >
+          <StyledToggleButtonGroup
+          size="large"
+          orientation="horizontal"
+          // value={alignment}
+          // exclusive
+          // onChange={e => { handleAlignment(e)}}
+          // aria-label="tools alignment"
+        >
+         
+          <ToggleButton
             style={styles.righticons}
-            onClick={() => {
-              setToolType("selection");
-              setShapeWidth(1);
+            value="check"
+            // aria-label="pencil"
+            // id="pencil"
+            // data-toggle="tooltip"
+            // data-placement="top"
+            // title="Pencil"
+            selected={selected}
+            onChange={() => {
+              setSelected(!selected);
             }}
-          >
-          <Resize toolType={toolType} colorWidth={colorWidth} />
-          </button> */}
-          <Paper square elevation={3}>
-          {/* <ToggleButton value="list" aria-label="line"
-            id="line"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Line"
-            style={styles.righticons}
-            onClick={() => {
-              setToolType("line");
-              setWidth(1);
-              setShapeWidth(1);
-            }}
-          >
-            <Line toolType={toolType} colorWidth={colorWidth} />
-          </ToggleButton>
-
-          <ToggleButton value="list" aria-label="rectangle"
-            id="rectangle"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Rectangle"
-            style={styles.righticons}
-            onClick={() => {
-              setToolType("rectangle");
-              setWidth(1);
-              setShapeWidth(1);
-            }}
-          >
-            <Rectangle toolType={toolType} colorWidth={colorWidth} />
-          </ToggleButton>
-
-          <ToggleButton value="list" aria-label="circle"
-            id="circle"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Circle"
-            style={styles.righticons}
-            onClick={() => {
-              setToolType("circle");
-              setWidth(1);
-              setShapeWidth(1);
-            }}
-          >
-            <Circle toolType={toolType} colorWidth={colorWidth} />
-          </ToggleButton>
-
-          <ToggleButton  value="list" aria-label="triangle"
-            id="triangle"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Triangle"
-            style={styles.righticons}
-            onClick={() => {
-              setToolType("triangle");
-              setWidth(1);
-              setShapeWidth(1);
-            }}
-          >
-            <Triangle toolType={toolType} colorWidth={colorWidth} />
-          </ToggleButton> */}
-
-          <ToggleButton  value="list" aria-label="pencil"
-            id="pencil"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Pencil"
-            style={styles.righticons}
             onClick={() => {
               setToolType("pencil");
               setWidth(1);
               setShapeWidth(1);
             }}
           >
-            <Pencil toolType={toolType} colorWidth={colorWidth} />
+            {/* <Pencil toolType={toolType} colorWidth={colorWidth} /> */}
+            <CreateSharpIcon fontSize="large" toolType={toolType} colorWidth={colorWidth} />
           </ToggleButton>
-
+          <Divider flexItem orientation="vertical" className={classes.divider} />
+          <ToggleButton
+            value="check"
+            selected={selected}
+            onChange={() => {
+              setSelected(!selected);
+            }}
+          >
+            <CheckIcon />
+          </ToggleButton>
+          <Divider flexItem orientation="vertical" className={classes.divider} />
           <ToggleButton value="list" aria-label="brush"
             id="brush"
             data-toggle="tooltip"
@@ -241,16 +206,6 @@ export default function Swatch({
             >
               <Reset />
             </ToggleButton>
-            {/* <ToggleButton
-              style={styles.topicons}
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Download"
-            >
-              <ToggleButton onClick={download}>
-                <Download />
-              </ToggleButton>
-            </ToggleButton> */}
               <ToggleButton
                 style={styles.picker}
                 onClick={handleClickStroke}
@@ -283,11 +238,12 @@ export default function Swatch({
               </div>
             )}
           </div>
+          </StyledToggleButtonGroup>
           </Paper>
-          </ToggleButtonGroup>
+          {/* </ToggleButtonGroup> */}
         </div>
-        {/* hier fängt die HorizontalButtonbalken */}
-        </Grid>
-        </Grid>
+        </div>
+        // </Grid>
+        // </Grid>
   );
 }
