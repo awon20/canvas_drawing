@@ -153,7 +153,7 @@ export default function Swatch({
             {/* <Pencil toolType={toolType} colorWidth={colorWidth} /> */}
             <CreateSharpIcon fontSize="large" toolType={toolType} colorWidth={colorWidth} />
           </ToggleButton>
-          <Divider flexItem orientation="vertical" className={classes.divider} />
+          {/* <Divider flexItem orientation="vertical" className={classes.divider} />
           <ToggleButton
             value="check"
             selected={selected}
@@ -163,7 +163,7 @@ export default function Swatch({
           >
             <CheckIcon />
           </ToggleButton>
-          <Divider flexItem orientation="vertical" className={classes.divider} />
+          <Divider flexItem orientation="vertical" className={classes.divider} /> */}
           <ToggleButton value="list" aria-label="brush"
             id="brush"
             data-toggle="tooltip"
