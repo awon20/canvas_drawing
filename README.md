@@ -1,3 +1,65 @@
+# Canvas Drawing
+
+React-Zeichenanwendung für Freihandskizzen und einfache Formen auf einem HTML-Canvas.
+
+## Umfang
+
+- Freihandzeichnen, Radierer und Zeichenwerkzeuge
+- Auswahl von Farben und Strichbreiten
+- Formen mit Rough.js und Bedienelemente mit Material UI
+
+## Wartungsstand
+
+Die Sicherheits- und Abhängigkeitsänderungen werden in [PR #1](https://github.com/awon20/canvas_drawing/pull/1) verfolgt. Sie sind noch nicht in den Quellcode-Hauptbranch übernommen. Die README-Ergänzung führt diesen Pull Request nicht zusammen.
+
+## Lokal starten
+
+Die folgenden Befehle verwenden ausdrücklich den vorbereiteten Wartungsbranch. Dessen Änderungen sind noch in Prüfung; offene Paketwarnungen stehen im zugehörigen PR. Der bisherige Hauptbranch verwendet teilweise ältere Build-Werkzeuge und kann mit neueren Node-Versionen fehlschlagen.
+
+Voraussetzungen: Git, Node.js und npm. Die lokalen Web-Builds des Wartungsstands wurden mit Node.js 24.19.0 und npm 11.21.0 geprüft. Ein erfolgreicher Build bedeutet keine vollständige Behebung aller Paketwarnungen.
+
+```sh
+git clone --branch codex/security-maintenance-2026-10-13 https://github.com/awon20/canvas_drawing.git
+cd canvas_drawing
+npm ci --ignore-scripts
+npm start
+```
+
+Die vom Entwicklungsserver ausgegebene lokale Adresse öffnen. Zum Beenden im Terminal `Ctrl+C` drücken.
+
+## Build und Prüfungen
+
+```sh
+npm run build
+npm audit
+```
+
+Der statische Web-Build liegt in `build/`. `npm test` startet den konfigurierten Test-Runner; die Existenz des Skripts allein belegt keine vollständige Testabdeckung.
+
+## Projektstruktur
+
+- [`src/App.js`](https://github.com/awon20/canvas_drawing/blob/master/src/App.js)
+- [`src/components`](https://github.com/awon20/canvas_drawing/tree/master/src/components)
+- [`src/theme`](https://github.com/awon20/canvas_drawing/tree/master/src/theme)
+- [`public`](https://github.com/awon20/canvas_drawing/tree/master/public)
+
+## Veröffentlichung
+
+Die bestehende `homepage`-Einstellung muss vor einem Pages-Deployment auf das tatsächliche Ziel abgestimmt werden. Der Wartungs-PR dokumentiert außerdem noch offene CI-/Lint-Warnungen.
+
+## Herkunft
+
+Grundlage: [pencilpal von bansalsurya](https://github.com/bansalsurya/pencilpal).
+
+## Beiträge
+
+Änderungen mit einer kurzen Beschreibung und passenden Prüfergebnissen als Pull Request einreichen. Keine Zugangsdaten, privaten Schlüssel oder lokalen Abhängigkeitsordner hinzufügen.
+
+<details>
+<summary>Bisherige Projektnotizen (historischer Stand)</summary>
+
+Die folgenden Hinweise bleiben als ursprüngliche Dokumentation erhalten. Für den aktuellen Wartungsstand gelten die Angaben oben.
+
 # Credit to bansalsurya
 https://github.com/bansalsurya/pencilpal
 
@@ -71,3 +133,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+</details>
